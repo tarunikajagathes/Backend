@@ -1,9 +1,10 @@
 const findUser=require('../service/findUser')
+const jwt=require('jsonwebtoken')
 
 exports.aboutUser=async(req,res)=>{
-    const user=req.params.email;
+    const decode=jwt.verify(req.headers.authorization,"my_secret_key");
     try{
-    const value=await findUser.find(user);
+    const value=await findUser.find(decode.email_u);
     res.status(200).send(value);
     }
     catch(err){

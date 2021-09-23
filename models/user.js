@@ -1,4 +1,5 @@
 const mongoose =require( 'mongoose');
+const {isEmail}=require('validator/lib/isEmail')
 
 var schema = new mongoose.Schema({
     email: {

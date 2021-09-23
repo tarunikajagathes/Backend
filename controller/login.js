@@ -5,18 +5,18 @@ exports.userLogin=async (req, res) => {
     let email_u = req.body.email;
     try{
     const email_f=await findUser.find(email_u)
-    if(email_f.length!=2){
+    if(email_f.data!="no data"){
         let pass_u = req.body.password;
         const data = await checkPass_createToken.check(email_u,pass_u);
         if(data=="error"){
-            res.sendStatus(404);
+            res.sendStatus(403);
         }
         else{
             res.status(200).send(data);
         }
     }
     else{
-        res.status(404);
+        res.send(email_f);
     }
     }
     catch(err){

@@ -8,7 +8,7 @@ exports.values=async(decode,u_name)=>{
         {email: decode}
     ]},
     {$pull:
-        {items:u_name}
+        {items:{name:u_name.name}}
     }
 )
 return res;

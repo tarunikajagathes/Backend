@@ -1,9 +1,9 @@
 const removeValues=require('../service/removeValues')
-
+const jwt=require('jsonwebtoken')
 exports.removeValue=async(req,res)=>{
-    var email = req.body.email;
-    var u_name={name:req.body.value.name,image:req.body.value.image,qty:req.body.value.qty,price:req.body.value.price};
-   try{ await removeValues.values(email,u_name);
+    const decode=jwt.verify(req.headers.authorization,"my_secret_key");
+    var u_name={name:req.body.value};
+   try{ await removeValues.values(decode.email_u,u_name);
     res.status(200).send("updated");}
     catch(err){
         res.status(500).send(err);

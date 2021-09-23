@@ -18,7 +18,5 @@ var schema1 = new mongoose.Schema({
 });
 
 
-const bakerys=mongoose.model('Bakerys',schema1);
-const fruits=mongoose.model('Fruits',schema1);
-const vegetables=mongoose.model('Vegetables',schema1);
-module.exports={bakerys,fruits,vegetables};
+const items=mongoose.model('items',schema1);
+module.exports={items};

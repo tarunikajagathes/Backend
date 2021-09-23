@@ -5,8 +5,8 @@ exports.filterCatogery=async(req,res)=>{
     const high=req.body.high;
     const low=req.body.low;
     const range=req.body.range;
-    const type=req.body.type;
-    const result=await filter.find(high,low,range,type);
+    const value=req.body.type;
+    const result=await filter.find(high,low,range,value);
     res.status(200).send(result)}
     catch(err){
         res.status(500).send(err);

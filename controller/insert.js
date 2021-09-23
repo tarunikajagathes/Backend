@@ -1,7 +1,8 @@
 const insertValue=require('../service/insertValue')
+const jwt=require('jsonwebtoken')
 
 exports.insertValues=async (req, res) => {
-    const email=req.body.email;
+    const decode=jwt.verify(req.headers.authorization,"my_secret_key");
     var value_u = {
         name: req.body.value.name,
         image: req.body.value.image,
@@ -9,7 +10,7 @@ exports.insertValues=async (req, res) => {
         price: req.body.value.price
     };
     try{
-    const result=await insertValue.updateValue(email,value_u)
+    const result=await insertValue.updateValue(decode.email_u,value_u)
     res.status(200).send(result);
     }
     catch(err){
