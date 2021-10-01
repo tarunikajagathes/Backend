@@ -5,7 +5,7 @@ const jwt=require('jsonwebtoken');
 exports.check=async(email_u,pass_u)=>{
     try{
         const email=await findUser.find(email_u);
-    let pass = crypto.decrypt(email.data[0].password);
+    const pass = crypto.decrypt(email.data[0].password);
     if (pass_u == pass) {
         const token = jwt.sign({
             email_u

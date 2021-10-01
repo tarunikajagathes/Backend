@@ -1,6 +1,34 @@
-const {
-    UserItems
-} = require('../models/userItems')
+const {UserItems}=require('../models/userItems')
+exports.ishow=async(d)=>{
+    const res=await UserItems.find({
+    email: d
+}, {
+    items: 1,
+    _id: 0
+});
+return res;
+}
+
+exports.dec=async(decode,name)=>{
+    const res=await UserItems.updateOne({
+    $and:[
+        {"items.name": name},
+        {email: decode}
+    ]
+},{$inc:{"items.$.qty": -1 }})
+
+return res;
+}
+
+exports.inc=async(decode,name)=>{
+    const res=await UserItems.updateOne({
+    $and:[
+        {"items.name": name},
+        {email: decode}
+    ]
+},{$inc:{"items.$.qty": 1 }})
+return res;
+}
 
 exports.updateValue =async (e_decode, value_u) => {
     const email_found = await UserItems.aggregate([{
@@ -45,4 +73,17 @@ exports.updateValue =async (e_decode, value_u) => {
     }
     //console.log(await UserItems.find({email:e_decode}));
     return ("Successful");
+}
+
+exports.removeValues=async(decode,u_name)=>{
+    const res=await UserItems.findOneAndUpdate(
+    {$and:[
+        {"items.name": u_name.name},
+        {email: decode}
+    ]},
+    {$pull:
+        {items:{name:u_name.name}}
+    }
+)
+return res;
 }

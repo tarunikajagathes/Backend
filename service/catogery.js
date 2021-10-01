@@ -1,6 +1,11 @@
-const {
-    items
-} = require('../models/category');
+const {items}=require('../models/category')
+
+
+exports.findValue=async(value)=>{
+    let item;
+       item= await items.find({type:value})
+    return item;
+}
 
 exports.find = async (high, low, range, value) => {
 

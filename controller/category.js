@@ -1,4 +1,15 @@
-const filter=require('../service/filter')
+const findValue = require('../service/catogery')
+const filter=require('../service/catogery')
+
+exports.type = async (req, res) => {
+    try {
+        const details = await findValue.findValue(req.params.type);
+        res.status(200).send(details);
+    }
+catch (err) {
+    res.status(500).send(err);
+}
+}
 
 exports.filterCatogery=async(req,res)=>{
     try{

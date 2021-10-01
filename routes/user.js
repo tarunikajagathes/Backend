@@ -2,9 +2,8 @@ const express = require('express')
 const router = express.Router()
 const siginin = require('../controller/signin')
 const login = require('../controller/login')
-const basketdetails = require('../controller/basketdetails')
+const userBasket = require('../controller/userBasket')
 const userdetails = require('../controller/userdetails')
-const userUpdate = require('../controller/userUpdate')
 const checkToken = require('../controller/checkToken')
 const validator = require('../controller/validator')
 const {
@@ -35,8 +34,8 @@ router.post('/user/login', [
     })
 ], login.userLogin)
 router.get('/userdetails', checkToken.auth, userdetails.aboutUser)
-router.put('/update', checkToken.auth, userUpdate.update)
-router.get('/details', checkToken.auth, basketdetails.details)
+router.put('/update', checkToken.auth, userdetails.update)
+router.get('/details', checkToken.auth, userBasket.details)
 
 
 

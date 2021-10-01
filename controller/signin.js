@@ -6,12 +6,12 @@ const addUser = require('../service/addUser')
 const findUser = require('../service/findUser')
 
 exports.siginin = async (req, res) => {
-    var password = encrypt(req.body.password)
+    const password = encrypt(req.body.password)
     addUser.addUser(req.body.email, req.body.username, password, req.body.phone, req.body.address);
     res.status(201).send("added");
 }
 exports.checkUser = async (req, res) => {
-    let email_u = req.params.email;
+    const email_u = req.params.email;
     try {
         let find = await findUser.find(email_u);
         res.json(find);

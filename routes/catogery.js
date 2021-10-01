@@ -1,10 +1,9 @@
 const express=require('express')
 const router=express.Router()
-const filter=require('../controller/filter');
-const categoryValue = require('../controller/categoryValue')
+const category = require('../controller/category')
 
 
-router.get('/:type',categoryValue.type)
-router.put('/filter',filter.filterCatogery)
+router.get('/:type',category.type)
+router.put('/filter',category.filterCatogery)
 
 module.exports=router
