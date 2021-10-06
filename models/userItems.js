@@ -7,5 +7,4 @@ var newSchema = new mongoose.Schema({
     items: Array
 })
 var UserItems = mongoose.model('UserItems', newSchema);
-var Orders = mongoose.model('Orders', newSchema);
-module.exports={UserItems,Orders};
+module.exports={UserItems};
